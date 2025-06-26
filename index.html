@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catatan Revisi Dosen | Pencatat Otomatis</title>
+    <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" href="assets/icons/mic.svg">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1 class="app-title">
+                <span class="icon">🎤</span>
+                Catatan Revisi Dosen
+            </h1>
+            <p class="app-subtitle">Rekam, simpan, dan ekspor revisi dari dosen secara otomatis</p>
+        </header>
+
+        <main class="app-content">
+            <section class="recorder-section">
+                <div class="recorder-controls">
+                    <button id="recordBtn" class="btn-record">
+                        <img src="assets/icons/mic.svg" alt="Mic Icon" class="icon">
+                        <span>Mulai Rekam</span>
+                    </button>
+                    <div class="recorder-status">
+                        <div class="waveform">
+                            <div class="waveform-animation" id="waveform"></div>
+                        </div>
+                        <span id="recordingTime">00:00</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="transcript-section">
+                <div class="section-header">
+                    <h2>Transkrip Revisi</h2>
+                    <div class="actions">
+                        <button id="clearBtn" class="btn-secondary">
+                            <img src="assets/icons/stop.svg" alt="Clear Icon" class="icon">
+                            Bersihkan
+                        </button>
+                    </div>
+                </div>
+                <div id="transcript" class="transcript-box" contenteditable="true" placeholder="Hasil transkrip akan muncul di sini..."></div>
+            </section>
+
+            <section class="saved-notes">
+                <div class="section-header">
+                    <h2>Catatan Tersimpan</h2>
+                    <div class="filter-controls">
+                        <input type="date" id="dateFilter" class="date-filter">
+                        <button id="filterBtn" class="btn-secondary">Filter</button>
+                    </div>
+                </div>
+                <div class="notes-container">
+                    <ul id="notesList" class="notes-list"></ul>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <div class="export-actions">
+                <button id="saveBtn" class="btn-primary">
+                    <img src="assets/icons/save.svg" alt="Save Icon" class="icon">
+                    Simpan
+                </button>
+                <button id="exportTxtBtn" class="btn-export">
+                    <img src="assets/icons/download.svg" alt="Download Icon" class="icon">
+                    Ekspor TXT
+                </button>
+                <button id="exportPdfBtn" class="btn-export">
+                    <img src="assets/icons/download.svg" alt="Download Icon" class="icon">
+                    Ekspor PDF
+                </button>
+            </div>
+            <p class="copyright">© 2023 Pencatat Revisi Dosen | dibuat untuk memudahkan mahasiswa</p>
+        </footer>
+    </div>
+
+    <script src="scripts/storage.js"></script>
+    <script src="scripts/export.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
