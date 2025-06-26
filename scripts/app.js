@@ -26,13 +26,19 @@ function initSpeechRecognition() {
             recordBtn.classList.add('recording');
             waveform.classList.add('active');
             startRecordingTimer();
+            recordBtn.querySelector('span').textContent = 'Berhenti Rekam';
         };
 
         recognition.onend = () => {
-            isRecording = false;
-            recordBtn.classList.remove('recording');
-            waveform.classList.remove('active');
-            stopRecordingTimer();
+            if (isRecording) {
+                // Automatically restart recognition to keep recording continuously
+                recognition.start();
+            } else {
+                recordBtn.classList.remove('recording');
+                waveform.classList.remove('active');
+                stopRecordingTimer();
+                recordBtn.querySelector('span').textContent = 'Mulai Rekam';
+            }
         };
 
         recognition.onresult = (event) => {
@@ -79,10 +85,12 @@ recordBtn.addEventListener('click', () => {
     }
 
     if (isRecording) {
+        isRecording = false;
         recognition.stop();
     } else {
         finalTranscript = '';
         transcriptEl.textContent = '';
+        isRecording = true;
         recognition.start();
     }
 });
