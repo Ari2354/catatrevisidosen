@@ -1,0 +1,30 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Aturan untuk koleksi 'products':
+    // Siapapun bisa membaca daftar produk.
+    // Tidak ada yang bisa menulis atau mengubah produk dari sisi client (hanya dari admin).
+   match /products/{productId} {
+  allow read: if true;
+  allow write: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin";
+}
+
+    // Aturan untuk koleksi 'orders':
+    // Siapapun yang terautentikasi (login) bisa membuat pesanan (create).
+    // Hanya pengguna yang membuat pesanan yang bisa membaca pesanan mereka sendiri.
+    // Tidak ada yang bisa menghapus atau mengubah pesanan setelah dibuat (kecuali admin).
+    match /orders/{orderId} {
+      allow create: if request.auth != null; // Hanya pengguna terautentikasi yang bisa membuat pesanan
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId; // Pengguna hanya bisa melihat pesanannya sendiri
+      allow update, delete: if false; // Hanya admin yang boleh update/delete
+    }
+
+   match /users/{userId} {
+  // Hanya user yang sedang login yang bisa membaca dokumen user-nya sendiri
+  allow read: if request.auth != null && request.auth.uid == userId;
+  // (Opsional) Hanya user itu sendiri yang bisa menulis ke dokumennya
+  allow write: if request.auth != null && request.auth.uid == userId;
+
+    }
+  }
+}

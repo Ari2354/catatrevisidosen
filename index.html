@@ -58,27 +58,56 @@
                 <div class="notes-container">
                     <ul id="notesList" class="notes-list"></ul>
                 </div>
-            </section>
-        </main>
+        </section>
 
-        <footer class="app-footer">
-            <div class="export-actions">
-                <button id="saveBtn" class="btn-primary">
-                    <img src="assets/icons/save.svg" alt="Save Icon" class="icon">
-                    Simpan
-                </button>
-                <button id="exportTxtBtn" class="btn-export">
-                    <img src="assets/icons/download.svg" alt="Download Icon" class="icon">
-                    Ekspor TXT
-                </button>
-                <button id="exportPdfBtn" class="btn-export">
-                    <img src="assets/icons/download.svg" alt="Download Icon" class="icon">
-                    Ekspor PDF
-                </button>
-            </div>
-            <p class="copyright">© 2023 Pencatat Revisi Dosen | dibuat untuk memudahkan mahasiswa</p>
-        </footer>
-    </div>
+        <!-- Section Ulasan Pengguna -->
+        <section class="review-section">
+            <h2>Ulasan Pengguna</h2>
+            <form id="reviewForm" class="review-form">
+                <label for="reviewName">Nama:</label>
+                <input type="text" id="reviewName" name="reviewName" placeholder="Masukkan nama Anda" required>
+                <label for="reviewInput">Tulis ulasan Anda tentang website ini:</label>
+                <textarea id="reviewInput" name="reviewInput" placeholder="Tulis ulasan di sini..." required></textarea>
+                <button type="submit">Kirim Ulasan</button>
+            </form>
+            <table class="review-table" id="reviewTable">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Ulasan</th>
+                    </tr>
+                </thead>
+                <tbody id="reviewTableBody">
+                    <!-- Ulasan akan muncul di sini -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="export-actions">
+            <button id="saveBtn" class="btn-primary">
+                <img src="assets/icons/save.svg" alt="Save Icon" class="icon">
+                Simpan
+            </button>
+            <button id="exportTxtBtn" class="btn-export">
+                <img src="assets/icons/download.svg" alt="Download Icon" class="icon">
+                Ekspor TXT
+            </button>
+            <button id="exportPdfBtn" class="btn-export">
+                <img src="assets/icons/download.svg" alt="Download Icon" class="icon">
+                Ekspor PDF
+            </button>
+        </div>
+        <p class="copyright">© 2025 Pencatat Revisi Dosen | dibuat untuk memudahkan mahasiswa</p>
+    </footer>
+</div>
+
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <!-- Firebase Firestore SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 
     <script src="scripts/storage.js"></script>
     <script src="scripts/export.js"></script>

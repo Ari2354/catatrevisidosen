@@ -1,0 +1,23 @@
+{
+  "name": "sistem-pencatat-revisi-dosen",
+  "version": "1.0.0",
+  "description": "This project is a revision note-taking application for lecturers. It includes styles, scripts, and assets organized in a clear folder structure.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ari2354/catatrevisidosen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ari2354/catatrevisidosen/issues"
+  },
+  "homepage": "https://github.com/Ari2354/catatrevisidosen#readme",
+  "dependencies": {
+    "firebase": "^11.9.1"
+  }
+}
