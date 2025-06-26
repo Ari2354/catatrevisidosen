@@ -27,12 +27,18 @@ function initSpeechRecognition() {
             waveform.classList.add('active');
             startRecordingTimer();
             recordBtn.querySelector('span').textContent = 'Berhenti Rekam';
+            recognitionRestarting = false;
         };
 
         recognition.onend = () => {
-            if (isRecording) {
-                // Automatically restart recognition to keep recording continuously
-                recognition.start();
+            if (isRecording && !recognitionRestarting) {
+                recognitionRestarting = true;
+                setTimeout(() => {
+                    if (isRecording) {
+                        recognition.start();
+                    }
+                    recognitionRestarting = false;
+                }, 500);
             } else {
                 recordBtn.classList.remove('recording');
                 waveform.classList.remove('active');
@@ -47,7 +53,8 @@ function initSpeechRecognition() {
             for (let i = event.resultIndex; i < event.results.length; i++) {
                 const transcript = event.results[i][0].transcript;
                 if (event.results[i].isFinal) {
-                    finalTranscript += transcript + ' ';
+                    // Append final transcript only once
+                    finalTranscript += transcript.trim() + ' ';
                 } else {
                     interimTranscript += transcript;
                 }
